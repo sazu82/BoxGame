@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class Box : AttachmentBase
 {
-	public List<AttachmentBase> aList;
+	public AttachmentBase[] aList;
 	public AttachmentBase up;
 	public AttachmentBase down;
 	public AttachmentBase back;
@@ -15,6 +15,8 @@ public class Box : AttachmentBase
 	protected override void Start()
 	{
 		base.Start();
+
+		aList = new AttachmentBase[6];
 	}
 
 	protected override void Update()
@@ -41,21 +43,41 @@ public class Box : AttachmentBase
 		{
 			ab.transform.parent = transform;
 			ab.transform.localPosition = dir;
+			ab.mobBase = mobBase;
+			ab.parent = this;
 
 			//ab.transform.localRotation = Quaternion.Euler(Vector3.zero);
 
 			if (dir == Vector3.up)
+			{
+				aList[0] = ab;
 				dir = Vector3.left * 90;
+			}
 			else if (dir == Vector3.down)
+			{
+				aList[1] = ab;
 				dir = Vector3.left * -90;
+			}
 			else if (dir == Vector3.left)
+			{
+				aList[2] = ab;
 				dir = Vector3.up * -90;
+			}
 			else if (dir == Vector3.right)
+			{
+				aList[3] = ab;
 				dir = Vector3.up * 90;
+			}
 			else if (dir == Vector3.forward)
+			{
+				aList[4] = ab;
 				dir = Vector3.zero;
+			}
 			else if (dir == Vector3.back)
+			{
+				aList[5] = ab;
 				dir = Vector3.up * 180;
+			}
 			else Debug.LogError("よくわからん値が入力されとるぞ");
 
 
@@ -63,4 +85,13 @@ public class Box : AttachmentBase
 		}
 	}
 
+	public void ListUpdata()
+	{
+		up = aList[0];
+		down = aList[1];
+		left = aList[2];
+		right = aList[3];
+		forward = aList[4];
+		back = aList[5];
+	}
 }

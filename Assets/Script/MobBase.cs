@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class MobBase : MonoBehaviour
 {
@@ -49,6 +50,30 @@ public class MobBase : MonoBehaviour
 
 	public void RandamSet(AttachmentBase attachment)
 	{
-		
+		bool check = false, s = false;
+		Box box = coreBox.GetComponent<Box>();
+		List<Box> boxes = new List<Box>();
+
+		while (true)
+		{
+			for (int i = 0; i < box.aList.Length; i++)
+			{
+				if (box.aList[i] == null)
+				{
+					box.aList[i] = attachment;
+					box.ListUpdata();
+
+					return;
+				}
+				else if (box.aList[i] is Box)
+				{
+					boxes.Add((Box)box.aList[i]);
+				}
+			}
+
+			box = boxes[0];
+			boxes.Remove(boxes[0]);
+
+		}
 	}
 }
