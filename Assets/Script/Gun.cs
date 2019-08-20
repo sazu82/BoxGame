@@ -38,7 +38,7 @@ public class Gun : AttachmentBase
 		GameObject shotObject = Instantiate(shot.gameObject, outObject.transform.position, outObject.transform.rotation);
 		Rigidbody rigi = shotObject.GetComponent<Rigidbody>();
 		Shot s = shotObject.GetComponent<Shot>();
-		Vector3 shotPow = outObject.transform.TransformDirection(Vector3.back) * bulletSpeed;
+		Vector3 shotPow = outObject.transform.TransformDirection(Vector3.forward) * bulletSpeed;
 		s.parent = gameObject;
 
 		rigi.AddForce(shotPow);

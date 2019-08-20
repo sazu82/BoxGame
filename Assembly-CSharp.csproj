@@ -66,12 +66,17 @@
     <Compile Include="Assets\Script\AttachmentType.cs" />
     <Compile Include="Assets\Script\Box.cs" />
     <Compile Include="Assets\Script\Enemy.cs" />
+    <Compile Include="Assets\Script\EnemyMove.cs" />
+    <Compile Include="Assets\Script\EnemySencer.cs" />
     <Compile Include="Assets\Script\Gun.cs" />
     <Compile Include="Assets\Script\Manager.cs" />
     <Compile Include="Assets\Script\MobBase.cs" />
     <Compile Include="Assets\Script\Player.cs" />
     <Compile Include="Assets\Script\Shot.cs" />
+    <Compile Include="Assets\Script\SzUnity\EnemySencer.cs" />
+    <Compile Include="Assets\Script\SzUnity\ItemObject.cs" />
     <Compile Include="Assets\Script\SzUnity\Timer.cs" />
+    <Compile Include="Assets\Script\UIManager.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Data/Unity Data/BoxGame/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

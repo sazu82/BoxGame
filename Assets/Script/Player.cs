@@ -5,7 +5,6 @@ using UnityEngine;
 public class Player : MobBase
 {
 	public GameObject cameraControll;
-	public GameObject coreMesh;
 	public float ccx;
 	public float ccy;
 	public KeyCode shot = KeyCode.Space;
@@ -35,7 +34,7 @@ public class Player : MobBase
 		move.z = Input.GetAxis("Vertical");
 
 		move *= speed * Time.deltaTime;
-		move = coreMesh.transform.TransformDirection(move);
+		move = coreBox.transform.TransformDirection(move);
 		//move += transform.position;
 
 		cc.Move(move);
@@ -47,7 +46,7 @@ public class Player : MobBase
 	{
 		GameObject shot = Instantiate(shotObject,transform.position,transform.rotation);
 		Rigidbody shotRig = shot.GetComponent<Rigidbody>();
-		Vector3 shotPow= coreMesh.transform.TransformDirection(Vector3.forward) * pow;
+		Vector3 shotPow= coreBox.transform.TransformDirection(Vector3.forward) * pow;
 		Shot s = shot.GetComponent<Shot>();
 		s.parent = gameObject;
 
@@ -58,7 +57,7 @@ public class Player : MobBase
 	{
 		const float max = 80, min = 280, med = 180;
 		Vector3 cRot = cameraControll.transform.localRotation.eulerAngles;
-		Vector3 pRot = coreMesh.transform.localRotation.eulerAngles;
+		Vector3 pRot = coreBox.transform.localRotation.eulerAngles;
 
 		pRot.y += Input.GetAxis("Mouse X") * ccx * Time.deltaTime;
 		cRot.x += Input.GetAxis("Mouse Y") * ccy * Time.deltaTime;
@@ -75,7 +74,7 @@ public class Player : MobBase
 			}
 		}
 
-		coreMesh.transform.localRotation = Quaternion.Euler(pRot);
+		coreBox.transform.localRotation = Quaternion.Euler(pRot);
 		cameraControll.transform.localRotation = Quaternion.Euler(cRot);
 	}
 

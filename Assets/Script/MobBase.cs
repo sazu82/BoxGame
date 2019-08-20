@@ -6,6 +6,7 @@ public class MobBase : MonoBehaviour
 
 	protected CharacterController cc;
 
+	public GameObject coreBox;
 	public GameObject shotObject;
 	public float pow = 1;
 	public float speed = 1;
@@ -44,5 +45,10 @@ public class MobBase : MonoBehaviour
 	public virtual bool File()
 	{
 		return true;
+	}
+
+	public void RandamSet(AttachmentBase attachment)
+	{
+		
 	}
 }

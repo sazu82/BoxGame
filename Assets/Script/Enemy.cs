@@ -8,6 +8,8 @@ using UnityEngine;
 
 public class Enemy : MobBase
 {
+	public List<List<EnemyMove>> NormalMoves;
+
 	protected override void Start()
 	{
 		base.Start();
@@ -17,4 +19,21 @@ public class Enemy : MobBase
 	{
 		base.Update();
 	}
+
+
+
+	//通常時
+	public void Normal()
+	{
+		
+	}
+
+	//攻撃時
+	public void Rage()
+	{
+
+	}
+
+	//遠距離
+
 }

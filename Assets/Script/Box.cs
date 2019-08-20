@@ -1,20 +1,20 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 
 public class Box : AttachmentBase
 {
+	public List<AttachmentBase> aList;
 	public AttachmentBase up;
 	public AttachmentBase down;
 	public AttachmentBase back;
-	public AttachmentBase forword;
+	public AttachmentBase forward;
 	public AttachmentBase left;
 	public AttachmentBase right;
-
 
 	protected override void Start()
 	{
 		base.Start();
-		
 	}
 
 	protected override void Update()
@@ -25,40 +25,41 @@ public class Box : AttachmentBase
 
 	public void AttachmentUpdata()
 	{
-		if (up != null)
-		{
-			up.transform.localPosition = Vector3.up;
-			up.transform.localRotation = Quaternion.Euler(Vector3.zero);
-		}
+		au(up, Vector3.up);
+		au(down, Vector3.down);
+		au(left, Vector3.left);
+		au(right, Vector3.right);
+		au(back, Vector3.back);
+		au(forward, Vector3.forward);
 
-		if (down != null)
-		{
-			down.transform.localPosition = Vector3.down;
-			down.transform.localRotation = Quaternion.Euler(Vector3.zero);
-		}
+	}
 
-		if (back != null)
-		{
-			back.transform.localPosition = Vector3.back;
-			back.transform.localRotation = Quaternion.Euler(Vector3.zero);
-		}
+	void au(AttachmentBase ab, Vector3 dir)
+	{
 
-		if (forword != null)
+		if (ab != null)
 		{
-			forword.transform.localPosition = Vector3.forward;
-			forword.transform.localRotation = Quaternion.Euler(Vector3.zero);
-		}
+			ab.transform.parent = transform;
+			ab.transform.localPosition = dir;
 
-		if (left != null)
-		{
-			left.transform.localPosition = Vector3.left;
-			left.transform.localRotation = Quaternion.Euler(Vector3.zero);
-		}
+			//ab.transform.localRotation = Quaternion.Euler(Vector3.zero);
 
-		if (right != null)
-		{
-			right.transform.localPosition = Vector3.right;
-			right.transform.localRotation = Quaternion.Euler(Vector3.zero);
+			if (dir == Vector3.up)
+				dir = Vector3.left * 90;
+			else if (dir == Vector3.down)
+				dir = Vector3.left * -90;
+			else if (dir == Vector3.left)
+				dir = Vector3.up * -90;
+			else if (dir == Vector3.right)
+				dir = Vector3.up * 90;
+			else if (dir == Vector3.forward)
+				dir = Vector3.zero;
+			else if (dir == Vector3.back)
+				dir = Vector3.up * 180;
+			else Debug.LogError("よくわからん値が入力されとるぞ");
+
+
+			ab.transform.localRotation = Quaternion.Euler(dir);
 		}
 	}
 
